@@ -32,8 +32,18 @@ class Game():
                 
                 self.draw_black_rect()
                 self.draw_play_area()
+
+                self.handle_keypress(event)
+
                 pygame.display.update()
         pygame.quit()
+
+    def handle_keypress(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                self.players['p1'].paddle.pos += 10
+            elif event.key == pygame.K_DOWN:
+                self.players['p1'].paddle.pos -= 10
 
     def define_play_area(self):
         delta = int(((self.HEIGHT+self.WIDTH) / 2 ) / 4)
