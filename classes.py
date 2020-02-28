@@ -25,8 +25,11 @@ class Ball(object):
 class Paddle(object):
     def __init__(self, display, p_area, pos, color):
         
+        self.COLOR = color
+        self.DISPLAY = display
         self.P_AREA = p_area
         self.TMAX = 2 * (self.P_AREA['h'] + self.P_AREA['w'])
+        self.pos = pos
 
     def draw(self):
         pass
@@ -51,7 +54,12 @@ class Paddle(object):
 
 
 class Player(object):
-    def __init__(self):
+    def __init__(self, display, p_area, pos, color):
 
         self.score = 0
         self.has_ball = False
+        self.pos = pos
+        
+
+        self.paddle = Paddle(display, p_area, self.pos, color)
+
