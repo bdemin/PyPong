@@ -35,8 +35,15 @@ class Game():
 
                 self.handle_keypress(event)
 
+                self.update_players()
+
                 pygame.display.update()
+
         pygame.quit()
+
+    def update_players(self):
+        for player in self.players.values():
+            player.update()
 
     def handle_keypress(self, event):
         if event.type == pygame.KEYDOWN:
