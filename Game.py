@@ -41,11 +41,8 @@ class Game():
     def draw_black_rect(self):
         delta = 10
         pos = (delta, delta)
-        dim = (self.HEIGHT-2*delta, self.WIDTH-2*delta)
-        pygame.draw.rect(self.DISPLAY,(0,0,255), pygame.Rect(*pos, *dim))
+        dim = (self.HEIGHT - 2*delta, self.WIDTH - 2*delta)
+        pygame.draw.rect(self.DISPLAY, (0,0,255), pygame.Rect(*pos, *dim))
 
     def draw_play_area(self):
-        delta = ((self.HEIGHT+self.WIDTH) / 2 ) / 4
-        pos = (delta, delta)
-        dim = (self.HEIGHT-2*delta, self.WIDTH-2*delta)
-        pygame.draw.rect(self.DISPLAY,(0,0,0), pygame.Rect(*pos, *dim))
+        pygame.draw.rect(self.DISPLAY, (0,0,0), pygame.Rect([val for val in self.P_AREA.values()]))
