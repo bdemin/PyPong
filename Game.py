@@ -1,5 +1,7 @@
 import pygame
 
+from classes import Player
+
 
 class Game():
     def __init__(self):
@@ -13,6 +15,9 @@ class Game():
         self.define_play_area()
 
         pygame.display.set_caption("PyPong") #!
+        
+        self.players = {}
+        self.players['p1'] = Player(self.DISPLAY, self.P_AREA, 1000, (255,0,0))
 
         self.run_graphics_loop()
 
@@ -24,7 +29,7 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-
+                
                 self.draw_black_rect()
                 self.draw_play_area()
                 pygame.display.update()
