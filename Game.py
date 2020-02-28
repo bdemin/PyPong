@@ -10,6 +10,8 @@ class Game():
         self.DISPLAY = pygame.display.set_mode((self.HEIGHT, self.WIDTH))
         self.DISPLAY.fill((255,255,255))
 
+        self.define_play_area()
+
         pygame.display.set_caption("PyPong") #!
 
         self.run_graphics_loop()
@@ -27,6 +29,14 @@ class Game():
                 self.draw_play_area()
                 pygame.display.update()
         pygame.quit()
+
+    def define_play_area(self):
+        delta = int(((self.HEIGHT+self.WIDTH) / 2 ) / 4)
+        self.P_AREA = {}
+        self.P_AREA['x'] = delta
+        self.P_AREA['y'] = delta
+        self.P_AREA['w'] = self.HEIGHT-2*delta
+        self.P_AREA['h'] = self.WIDTH-2*delta
 
     def draw_black_rect(self):
         delta = 10
