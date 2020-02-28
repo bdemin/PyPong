@@ -1,5 +1,7 @@
 import numpy as np
 
+import pygame
+
 
 class Ball(object):
     def __init__(self):
@@ -32,10 +34,14 @@ class Paddle(object):
         self.pos = pos
 
     def draw(self):
-        pass
+        n_circs = 40
+        for t in range(self.pos, self.pos + n_circs):
+        # for t in range(self.pos, self.pos+1):
+            center = self.get_pos_of_param_rect(t)
+            center = (int(center[0]), int(center[1]))
+            radius = 4
+            pygame.draw.circle(self.DISPLAY, self.COLOR, center, radius)
 
-    def move(self):
-        pass
     def get_pos_of_param_rect(self, t):
         if t >= self.TMAX:
             t -= self.TMAX
@@ -59,7 +65,7 @@ class Player(object):
         self.score = 0
         self.has_ball = False
         self.pos = pos
-        
-
         self.paddle = Paddle(display, p_area, self.pos, color)
 
+    def update(self):
+        self.paddle.draw()
