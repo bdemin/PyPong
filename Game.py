@@ -70,6 +70,8 @@ class Game():
 
     def draw_play_area(self):
         pygame.draw.rect(self.DISPLAY, (0,0,0), pygame.Rect([val for val in self.P_AREA.values()]))
+
+    @property
     def get_paddle_pos(self):
         paddle_pos_lst = []
         for player in self.players.values():
