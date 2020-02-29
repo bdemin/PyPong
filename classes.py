@@ -20,7 +20,7 @@ class Ball(object):
     def update(self):
         self.pos += self.velocity * self.dt
         pos = self.pos.astype(int)
-        self.circle = pygame.draw.circle(self.DISPLAY, (255, 255, 255), pos, self.radius)
+        pygame.draw.circle(self.DISPLAY, (255, 255, 255), pos, self.radius)
 
     def is_on_edge(self):
         if self.P_AREA['x'] >= self.pos[0] \
