@@ -47,17 +47,21 @@ class Paddle(object):
         self.COLOR = color
         self.DISPLAY = display
         self.P_AREA = p_area
+        self.WIDTH = 4
+        self.N_CIRCLES = 40
         self.TMAX = 2 * (self.P_AREA['h'] + self.P_AREA['w'])
         self.pos = pos
 
     def draw(self):
-        n_circs = 40
-        for t in range(self.pos, self.pos + n_circs):
-        # for t in range(self.pos, self.pos+1):
-            center = self.get_pos_of_param_rect(t)
-            center = (int(center[0]), int(center[1]))
-            radius = 4
-            pygame.draw.circle(self.DISPLAY, self.COLOR, center, radius)
+        for center in self.get_all_centers:
+            pygame.draw.circle(self.DISPLAY, self.COLOR, center, self.WIDTH)
+
+    @property
+    def get_all_centers(self):
+        circ_centers = []
+        for t in range(self.pos, self.pos + self.N_CIRCLES):
+            circ_centers.append(self.get_pos_of_param_rect(t))
+        return circ_centers
 
     def get_pos_of_param_rect(self, t):
         if t >= self.TMAX:
