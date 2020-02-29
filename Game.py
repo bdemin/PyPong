@@ -39,6 +39,10 @@ class Game():
 
                 self.update_players()
 
+                self.ball.update()
+                self.ball.is_on_edge()
+                self.ball.bounce()
+
                 pygame.display.update()
 
         pygame.quit()
