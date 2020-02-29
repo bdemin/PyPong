@@ -75,7 +75,6 @@ class Paddle(object):
             return np.array((self.P_AREA['x'] + self.P_AREA['w'], self.P_AREA['y'] + t - self.P_AREA['w']))
         elif self.P_AREA['w'] + self.P_AREA['h'] <= t <= 2*self.P_AREA['w'] + self.P_AREA['h']:
             return np.array((self.P_AREA['x'] + 2*self.P_AREA['w'] - t + self.P_AREA['h'] , self.P_AREA['y'] + self.P_AREA['h']))
-        # elif 2*self.P_AREA['w'] + self.P_AREA['h'] <= t <= 2*self.P_AREA['w'] + 2*self.P_AREA['h']:
         elif 2*self.P_AREA['w'] + self.P_AREA['h'] <= t:
             return np.array((self.P_AREA['x'] , self.P_AREA['y'] - t + 2*self.P_AREA['w'] + 2*self.P_AREA['h']))
 
