@@ -4,11 +4,17 @@ import pygame
 
 
 class Ball(object):
-    def __init__(self):
+    def __init__(self, display, p_area, paddle_pos_lst):
+        
+        self.DISPLAY = display
+        self.P_AREA = p_area
+        self.paddle_pos_lst = paddle_pos_lst
 
-        self.radius = 1
-        self.position = np.zeros(2)
-        self.velocity = np.zeros(2)
+        self.radius = 8
+        pos = (self.P_AREA['x'] + self.P_AREA['w']/2, self.P_AREA['y'] + self.P_AREA['h']/2)
+        self.pos = np.array(pos)
+        self.velocity = 80 * np.random.rand(2)
+        self.dt = 0.2
 
 
     def move(self):
