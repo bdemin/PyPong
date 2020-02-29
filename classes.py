@@ -20,6 +20,14 @@ class Ball(object):
     def move(self):
         pass
 
+    def is_on_edge(self):
+        if self.P_AREA['x'] >= self.pos[0] \
+            or self.pos[0] >= self.P_AREA['x'] + self.P_AREA['w'] \
+                or self.P_AREA['y'] >= self.pos[1] \
+                    or self.pos[1] >= self.P_AREA['y'] + self.P_AREA['h']:
+            print('much edge wow')
+            return True
+
     def bounce(self):
         pass
 
