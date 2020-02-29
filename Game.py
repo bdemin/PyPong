@@ -1,6 +1,6 @@
 import pygame
 
-from classes import Player
+from classes import Player, Ball
 
 
 class Game():
@@ -18,6 +18,8 @@ class Game():
         
         self.players = {}
         self.players['p1'] = Player(self.DISPLAY, self.P_AREA, 1000, (255,0,0))
+
+        self.ball = Ball(self.DISPLAY, self.P_AREA, self.get_paddle_pos)
 
         self.run_graphics_loop()
 
