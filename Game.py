@@ -78,3 +78,5 @@ class Game():
             paddle_pos_lst.append(player.paddle.pos)
         return paddle_pos_lst
 
+    def curr_player(self):
+        pass
