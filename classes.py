@@ -27,8 +27,9 @@ class Ball(object):
             or self.pos[0] >= self.P_AREA['x'] + self.P_AREA['w'] \
                 or self.P_AREA['y'] >= self.pos[1] \
                     or self.pos[1] >= self.P_AREA['y'] + self.P_AREA['h']:
-            print('much edge wow')
+            print('much edge, wow')
             return True
+        return False
 
     def bounce(self):
         pass
