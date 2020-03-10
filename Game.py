@@ -18,6 +18,7 @@ class Game():
         
         self.players = {}
         self.players['p1'] = Player(self.DISPLAY, self.P_AREA, 1000, (255,0,0))
+        self.players['p2'] = Player(self.DISPLAY, self.P_AREA, 500, (255,0,0))
 
         self.ball = Ball(self.DISPLAY, self.P_AREA, self.get_paddle_pos)
 
@@ -57,6 +58,10 @@ class Game():
                 self.players['p1'].paddle.pos += 10
             elif event.key == pygame.K_DOWN:
                 self.players['p1'].paddle.pos -= 10
+            elif event.key == pygame.K_RIGHT:
+                self.players['p2'].paddle.pos += 10
+            elif event.key == pygame.K_LEFT:
+                self.players['p2'].paddle.pos -= 10
 
     def define_play_area(self):
         delta = int(((self.HEIGHT+self.WIDTH) / 2 ) / 4)
