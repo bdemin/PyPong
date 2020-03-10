@@ -11,11 +11,10 @@ class Ball(object):
         self.paddle_pos_lst = paddle_pos_lst
 
         self.radius = 8
-        pos = (self.P_AREA['x'] + self.P_AREA['w']/2, self.P_AREA['y'] + self.P_AREA['h']/2)
-        self.pos = np.array(pos)
+        self.init_pos = (self.P_AREA['x'] + self.P_AREA['w']/2, self.P_AREA['y'] + self.P_AREA['h']/2)
+        self.pos = np.array(self.init_pos)
         self.velocity = 80 * np.random.rand(2)
-        self.dt = 0.2
-
+        self.dt = 0.01
 
     def update(self):
         self.pos += self.velocity * self.dt
@@ -31,15 +30,24 @@ class Ball(object):
             return True
         return False
 
-    def bounce(self):
-        pass
+    def is_on_paddle(self, paddle_centers):
+        # skip = 5
+        if self.is_on_edge():
+            for i in range(0, len(paddle_centers)):
+            # for i in range(0, len(paddle_centers), skip):
+                norm = np.linalg.norm(self.pos - paddle_centers[i])
+                print(norm)
+                if norm < 100:
+                    # WHICH PEDAL?!
+                    return True
+                self.pos = self.init_pos
+        return False
 
     def is_out(self):
         pass
 
     def change_color(self):
         pass
-
 
 class Paddle(object):
     def __init__(self, display, p_area, pos, color):
@@ -48,26 +56,30 @@ class Paddle(object):
         self.DISPLAY = display
         self.P_AREA = p_area
         self.WIDTH = 4
-        self.N_CIRCLES = 40
+        self.N_CIRCLES = 100
+        # self.LENGTH = 80
         self.TMAX = 2 * (self.P_AREA['h'] + self.P_AREA['w'])
         self.pos = pos
 
     def draw(self):
-        for center in self.get_all_centers:
+        self.centers = np.array(self.get_all_centers)
+        for center in self.centers:
             pygame.draw.circle(self.DISPLAY, self.COLOR, center, self.WIDTH)
 
     @property
     def get_all_centers(self):
         circ_centers = []
+        delta = 2
         for t in range(self.pos, self.pos + self.N_CIRCLES):
             circ_centers.append(self.get_pos_of_param_rect(t))
+            delta += 10
         return circ_centers
 
     def get_pos_of_param_rect(self, t):
         if t >= self.TMAX:
             t -= self.TMAX
         elif t < 0:
-            t += self.t_max
+            t += self.TMAX
 
         if 0 <= t <= self.P_AREA['w']:
             return np.array((self.P_AREA['x'] + t, self.P_AREA['y']))

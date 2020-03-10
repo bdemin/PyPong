@@ -26,7 +26,7 @@ class Game():
     def run_graphics_loop(self):
         run = True
         while run:
-            pygame.time.delay(100)
+            # pygame.time.delay(100)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -41,7 +41,7 @@ class Game():
 
                 self.ball.update()
                 self.ball.is_on_edge()
-                self.ball.bounce()
+                self.check_bounce()
 
                 pygame.display.update()
 
@@ -84,3 +84,10 @@ class Game():
 
     def curr_player(self):
         pass
+
+    def check_bounce(self):
+        for player in self.players.values():
+            if self.ball.is_on_paddle(player.paddle.centers):
+                print('bouncy bounce')
+                self.ball.velocity *= -1
+        
